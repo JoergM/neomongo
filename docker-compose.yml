@@ -1,0 +1,22 @@
+neo4j:
+    image: neo4j/neo4j
+    ports: 
+        - "7473:7473"
+        - "7474:7474"
+    environment:
+        - NEO4J_NO_AUTH=true
+
+mongo:
+    image: mongo
+    ports:
+        - "27017:27017"
+    command: mongod --replSet neomongo
+
+mongo_connector:
+    build: ./mongo_connector
+    links:
+        - mongo
+        - neo4j
+    environment:
+        - MONGO_HOST=mongo
+        - NEO4J_HOST=neo4j
