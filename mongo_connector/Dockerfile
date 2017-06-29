@@ -1,6 +1,6 @@
 FROM python:3-slim
 
-RUN pip install neo4j-doc-manager --pre
+RUN pip install neo4j-doc-manager
 
 ENV MONGO_HOST=localhost MONGO_PORT=27017 NEO4J_HOST=localhost NEO4J_PORT=7474
 
